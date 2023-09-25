@@ -13,7 +13,6 @@ var myCreatedElement;
 
 var currentHour = parseInt(dayjs().format("H"));
 
-
 function init()
 {
     setDateLabel();
