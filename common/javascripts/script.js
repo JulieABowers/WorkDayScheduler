@@ -1,8 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-//document.body.onload = addElement;
 //Create element ids to denote hour based on 24 hour clock
 var arrHourId = ["hour-9", "hour-10", "hour-11", "hour-12", "hour-13", "hour-14", "hour-15", "hour-16", "hour-17"];
 var btnId;
@@ -10,8 +5,9 @@ var btnId;
 var divHourClass = "row time-block";
 var myCreatedElement;
 //Convert to int so it can be compared as a number.
-
 var currentHour = parseInt(dayjs().format("H"));
+
+
 
 function init()
 {
