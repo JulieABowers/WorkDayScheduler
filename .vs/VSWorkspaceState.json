@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\common",
+    "\\common\\javascripts"
   ],
   "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
