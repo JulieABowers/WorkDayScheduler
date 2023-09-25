@@ -22,6 +22,7 @@ function init()
     //arrHourId.forEach(changeTextAreaColors);
     changeTextAreaColors();
     setTime();
+    setAreaText();
 }
 
 function setDateLabel()
@@ -121,6 +122,7 @@ function addElement(eleId) {
     */
     myCreatedElement = document.createElement("textarea");
     //This node only need class and number of rows in the text area
+    myCreatedElement.setAttribute("id", "txtarea" + eleId);
     myCreatedElement.setAttribute("class", "col-8 col-md-10 description");
     myCreatedElement.setAttribute("rows", "3");
     myContainer.appendChild(myCreatedElement);
@@ -155,10 +157,12 @@ function addElement(eleId) {
 function addBtnEventListener(eleId)
 {
     var btnId = "#btn" + eleId;
-    $(document).on("click", btnId, function () {
-        console.log(this.idname);
+    $(document).on("click", btnId, function (event) {
+        var txtAreaId = "txtarea" + eleId;
+        var inputVal = $("#" + txtAreaId).val();
+        localStorage.setItem(txtAreaId, inputVal);
+        event.preventDefault();
     });
-
 }
 
 function changeTextAreaColors(i)
@@ -187,81 +191,17 @@ function setTime()
     var timerInterval = setInterval(changeTextAreaColors, 60000);
 }
 
-/*
-$(function () {
-
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-
-});
-*/
-
-function someclick() {
-
-    addElement();
-    document.getElementById(btnId).addEventListener("click", someclick2(btnId));
-}
-
-function someclick2(idname) {
-
-    console.log(idname);
-}
-
-
-//arrHourId.forEach(someclick);
-/*
-function highlighterAction()
+function setAreaText()
 {
-    // actually do the highlighting stuff here
-}
-
-function highlighter() {
-    /*
-      The short pause allows any required callback functions
-      to execute before actually highlighting, and allows
-      the JQuery $(document).ready wrapper to finish.
-     */
-
-/*
-
-setTimeout(function () {
-        highlighterAction();
-    }, 200);
-}
-*/
-/*
-  Only trigger the function after document fully loaded.  This is
-  necessary for cases where page load takes a significant length
-  of time to fully load.
-*//*
-if (document.readyState == 'complete') 
-{
-    highlighter();
-}
-else
-{
-    document.onreadystatechange = function ()
+    var textAreaVal = "";
+    var txtAreaId;
+    arrHourId.forEach(function (i)
     {
-        if (document.readyState === "complete")
-        {
-            highlighter();
-            //object.addEventListener("click", myScript);
-        }
-    }
+        txtAreaId = "txtarea" + i;
+        textAreaVal = localStorage.getItem(txtAreaId);
+        $("#" + txtAreaId).val(textAreaVal);
+        console.log(textAreaVal);
+    })
 }
-*/
+
 init();
