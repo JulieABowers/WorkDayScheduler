@@ -199,7 +199,6 @@ function setAreaText()
         txtAreaId = "txtarea" + i;
         textAreaVal = localStorage.getItem(txtAreaId);
         $("#" + txtAreaId).val(textAreaVal);
-        console.log(textAreaVal);
     })
 }
 
